@@ -313,7 +313,7 @@ export function Navbar() {
                 </ul>
               </nav>
 
-              <div className="space-y-5 border-t border-ivory/15 pt-6">
+              <div className="border-t border-ivory/15 pt-6">
                 <ButtonLink
                   href="#booking"
                   variant="terracotta"
@@ -326,17 +326,6 @@ export function Navbar() {
                 >
                   Book Free Consultation
                 </ButtonLink>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-[0.56rem] font-bold uppercase tracking-[0.2em] text-ivory/60">
-                      Connect
-                    </p>
-                    <ContactIconGroup tooltipSide="top" className="mt-3" />
-                  </div>
-                  <p className="max-w-xs text-sm leading-relaxed text-ivory-muted">
-                    {siteConfig.addressLines.join(", ")}
-                  </p>
-                </div>
               </div>
             </div>
           </motion.div>
