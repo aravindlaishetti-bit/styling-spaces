@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -301,7 +301,7 @@ export function BookingForm() {
           </h3>
         </div>
         <p className="border border-ink/15 px-3 py-1.5 text-[0.56rem] font-bold uppercase tracking-[0.14em] text-muted-strong">
-          Free Â· 60 minutes
+          Free - 60 minutes
         </p>
       </div>
 

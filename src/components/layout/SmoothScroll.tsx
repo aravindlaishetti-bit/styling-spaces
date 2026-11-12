@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { setLenis } from "@/lib/lenis";
+import { scrollToSection, setLenis } from "@/lib/lenis";
 
 export function SmoothScroll() {
   useEffect(() => {
@@ -49,29 +49,39 @@ export function SmoothScroll() {
         return;
       }
 
-      const target = event.target as Element | null;
-      const anchor = target?.closest<HTMLAnchorElement>('a[href^="#"]');
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const anchor = target.closest<HTMLAnchorElement>('a[href^="#"]');
 
       if (!anchor || anchor.dataset.noSmooth === "true") return;
 
       const href = anchor.getAttribute("href");
       if (!href || href === "#") return;
 
-      const id = decodeURIComponent(href.slice(1));
-      const element = document.getElementById(id);
-      if (!element) return;
+      let id: string;
+
+      try {
+        id = decodeURIComponent(href.slice(1));
+      } catch {
+        return;
+      }
+
+      if (!document.getElementById(id)) return;
 
       event.preventDefault();
-      lenis.scrollTo(element, { offset: -80, duration: 1.2 });
+      scrollToSection(id);
       window.history.replaceState(null, "", href);
     }
+
+    document.addEventListener("click", handleAnchorClick);
 
     function refreshScrollTrigger() {
       ScrollTrigger.refresh();
     }
 
-    document.addEventListener("click", handleAnchorClick);
     window.addEventListener("load", refreshScrollTrigger);
+    requestAnimationFrame(refreshScrollTrigger);
 
     return () => {
       document.removeEventListener("click", handleAnchorClick);

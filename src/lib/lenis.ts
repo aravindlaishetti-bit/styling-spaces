@@ -10,6 +10,13 @@ export function getLenis() {
   return lenisInstance;
 }
 
+function getHeaderOffset() {
+  const header = document.querySelector<HTMLElement>("[data-site-header]");
+  const headerHeight = header?.getBoundingClientRect().height ?? 0;
+
+  return headerHeight + 16;
+}
+
 export function scrollToSection(id: string) {
   const element = document.getElementById(id);
   if (!element) return;
@@ -18,16 +25,21 @@ export function scrollToSection(id: string) {
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
+  const offset = getHeaderOffset();
+
   if (lenisInstance) {
     lenisInstance.scrollTo(element, {
-      offset: -80,
-      duration: reducedMotion ? 0 : 1.25,
+      offset: -offset,
+      duration: reducedMotion ? 0 : 1.2,
     });
     return;
   }
 
-  element.scrollIntoView({
-    behavior: reducedMotion ? "auto" : "smooth",
-    block: "start",
+  const targetPosition =
+    window.scrollY + element.getBoundingClientRect().top - offset;
+
+  window.scrollTo({
+    top: Math.max(0, targetPosition),
+    behavior: reducedMotion ? "instant" : "smooth",
   });
 }

@@ -99,13 +99,12 @@ export function Navbar() {
 
   function handleDrawerNav(id: string) {
     setOpen(false);
-    window.setTimeout(() => scrollToSection(id), 140);
+    window.setTimeout(() => scrollToSection(id), 320);
   }
 
   return (
     <>
-      <header
-        data-tone={scrolled ? undefined : "dark"}
+      <header data-site-header data-tone={scrolled ? undefined : "dark"}
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500",
           scrolled
