@@ -1,9 +1,11 @@
-import { ArrowUpRight, Clock, MapPin, MoveUpRight } from "lucide-react";
+﻿import { ArrowUpRight, Clock, MapPin, MoveUpRight } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { services } from "@/data/services";
 import { ContactIconGroup } from "@/components/ui/ContactIcon";
 import { CopyrightYear } from "@/components/ui/CopyrightYear";
 import { ButtonLink } from "@/components/ui/Button";
+import Link from "next/link";
+import { CookiePreferencesButton } from "@/components/layout/CookiePreferencesButton";
 
 export function Footer() {
   return (
@@ -21,7 +23,7 @@ export function Footer() {
                 <span className="italic text-terracotta"> SPACES.</span>
               </span>
               <span className="mt-3 text-[0.6rem] font-semibold uppercase tracking-[0.38em] text-ivory-muted">
-                Interior Design Studio · Hyderabad
+                Interior Design Studio | Hyderabad
               </span>
             </a>
 
@@ -107,13 +109,22 @@ export function Footer() {
           </div>
         </div>
 
+        <div className="flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-ivory/15 py-6 text-xs">
+          <Link href="/privacy-policy" className="text-ivory-muted transition-colors hover:text-ivory">
+            Privacy Policy
+          </Link>
+          <Link href="/terms-and-conditions" className="text-ivory-muted transition-colors hover:text-ivory">
+            Terms & Conditions
+          </Link>
+          <CookiePreferencesButton />
+        </div>
         <div className="flex flex-col gap-6 pt-8 text-xs text-ivory-muted md:flex-row md:items-center md:justify-between">
           <p>
             © <CopyrightYear initialYear={siteConfig.copyrightYear} /> Styling Spaces. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <p>{siteConfig.credit}</p>
+            <a href="https://www.instagram.com/aravindwebstudio/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-terracotta">{siteConfig.credit}</a>
             <a href="#home" className="group inline-flex items-center gap-2 uppercase tracking-[0.15em] transition-colors hover:text-ivory">
               Back to top
               <span className="flex h-8 w-8 items-center justify-center rounded-full border border-ivory/20 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-terracotta group-hover:text-terracotta">
@@ -126,3 +137,5 @@ export function Footer() {
     </footer>
   );
 }
+
+

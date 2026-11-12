@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+﻿import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/data/site";
@@ -8,6 +8,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { StructuredData } from "@/components/layout/StructuredData";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { CookieConsent } from "@/components/layout/CookieConsent";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -102,9 +103,11 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <CookieConsent />
         <WhatsAppFloat />
         <StructuredData />
       </body>
     </html>
   );
 }
+
